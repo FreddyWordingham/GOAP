@@ -6,7 +6,7 @@ from .state import State
 
 
 @typechecked
-def plan(goal: State, actions: List[Action], state: State, depth: int = 0, max_depth: int = 100) -> Tuple[List[Action], int]:
+def create_plan(goal: State, actions: List[Action], state: State, depth: int = 0, max_depth: int = 100) -> Tuple[List[Action], int]:
     """Find a plan to achieve the goal state.
 
     Args:
@@ -32,7 +32,7 @@ def plan(goal: State, actions: List[Action], state: State, depth: int = 0, max_d
             new_state = action.apply(state)
             # Check if state has changed, to avoid infinite recursion
             if new_state != state:
-                sub_plan, sub_cost = plan(
+                sub_plan, sub_cost = create_plan(
                     goal, actions, new_state, depth + 1, max_depth)
                 if sub_plan is not None:
                     plans.append(([action] + sub_plan, action.cost + sub_cost))
