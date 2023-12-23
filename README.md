@@ -1,7 +1,7 @@
 # GOAP
 
 <p align="center">
-  <img src="./resources/logo.png" alt="GOAP logo" width="200" height="200">
+  <img src="./resources/goap.png" alt="GOAP logo" width="200" height="200">
 </p>
 
 GOAP (Goal-Oriented Action Planning) is a form of declarative programming used in artificial intelligence systems.
