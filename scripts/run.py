@@ -5,7 +5,7 @@ actions = [
     Action("play_the_piano", 3, {}, {"music_playing": True}),
     Action("sit_by_fire", 1, {"has_fire": True}, {"is_warm": True}),
     Action("gather_wood", 2, {}, {"has_wood": True}),
-    Action("build_fire", 1, {"has_wood": True}, {"has_fire": True})
+    Action("build_fire", 1, {"has_wood": True}, {"has_fire": True}),
 ]
 
 goal = {"is_warm": True}

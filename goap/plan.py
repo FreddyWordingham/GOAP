@@ -5,44 +5,23 @@ from .action import Action
 from .state import State
 
 
-# @typechecked
-# def plan(goal: State, actions: List[Action], state: State) -> List[Action]:
-#     """Plan a sequence of actions that will achieve the given goal.
+@typechecked
+def plan(goal: State, actions: List[Action], state: State, depth: int = 0, max_depth: int = 100) -> Tuple[List[Action], int]:
+    """Find a plan to achieve the goal state.
 
-#     Args:
-#         goal (State): The goal state.
-#         actions (List[Action]): The actions that can be performed.
-#         state (State): The initial state.
+    Args:
+        goal (State): State to achieve.
+        actions (List[Action]): List of actions that can be performed.
+        state (State): Current state.
+        depth (int, optional): Current search depth. Defaults to 0.
+        max_depth (int, optional): Maximum depth to test. Defaults to 10.
 
-#     Returns:
-#         Tuple[List[Action], State]: The sequence of actions that will achieve the goal and the final state.
-#     """
+    Returns:
+        Tuple[List[Action], int]: The plan of actions, and the total cost.
+    """
 
-#     if all(state.get(k, False) == v for k, v in goal.items()):
-#         return []
-
-#     applicable_actions = [a for a in actions if a.is_doable(state)]
-
-#     if not applicable_actions:
-#         return []
-
-#     plans = []
-#     for action in applicable_actions:
-#         new_state = action.apply(state)
-#         sub_plan = plan(goal, actions, new_state)
-#         if sub_plan is not None:
-#             plans.append(([action] + sub_plan, action.cost +
-#                          sum(a.cost for a in sub_plan)))
-
-#     if not plans:
-#         return []
-
-#     return min(plans, key=lambda x: x[1])
-
-
-def plan(goal, actions, state, depth=0, max_depth=10):
     if depth > max_depth:
-        return None, float('inf')
+        return None, float("inf")
 
     if all(state.get(k, False) == v for k, v in goal.items()):
         return [], 0
@@ -59,6 +38,6 @@ def plan(goal, actions, state, depth=0, max_depth=10):
                     plans.append(([action] + sub_plan, action.cost + sub_cost))
 
     if not plans:
-        return None, float('inf')
+        return None, float("inf")
 
     return min(plans, key=lambda x: x[1])
