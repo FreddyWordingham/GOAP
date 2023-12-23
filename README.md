@@ -1,5 +1,9 @@
 # GOAP
 
+<p align="center">
+  <img src="./resources/logo.png" alt="GOAP logo" width="200" height="200">
+</p>
+
 GOAP (Goal-Oriented Action Planning) is a form of declarative programming used in artificial intelligence systems.
 It involves defining a set of actions that can be performed by an agent, each with preconditions and effects, to achieve specified goals within a dynamic environment.
 
