@@ -33,7 +33,22 @@ class Action:
             bool: True if the action can be performed in the given state.
         """
 
-        return all(state.get(k, False) == v for k, v in self.preconditions.items())
+        for key, value in self.preconditions.items():
+            if key in state:
+                # Compare values considering type (bool or int)
+                if isinstance(value, bool) and isinstance(state[key], bool):
+                    if state[key] != value:
+                        return False
+                elif isinstance(value, int) and isinstance(state[key], int):
+                    if state[key] < value:  # Assuming integer comparison is a minimum threshold
+                        return False
+                else:
+                    # Mismatched types, precondition not met
+                    return False
+            else:
+                # Key not in state, precondition not met
+                return False
+        return True
 
     @typechecked
     def apply(self, state: State) -> State:
@@ -47,5 +62,11 @@ class Action:
         """
 
         new_state = state.copy()
-        new_state.update(self.effects)
+
+        for key, value in self.effects.items():
+            if isinstance(value, bool):
+                new_state[key] = value
+            elif isinstance(value, int):
+                new_state[key] = new_state.get(key, 0) + value
+
         return new_state
