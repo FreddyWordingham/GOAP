@@ -12,7 +12,7 @@ It involves defining a set of actions that can be performed by an agent, each wi
 Import the library:
 
 ```python
-from goap import Action, plan
+from goap import Action, create_plan
 ```
 
 And define the current `State` of the world as:
