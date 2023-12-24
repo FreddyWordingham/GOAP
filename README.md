@@ -20,7 +20,7 @@ And define the current `State` of the world as:
 ```python
 initial_state = {
     "music_playing": False,
-    "has_wood": False,
+    "wood_count": 0,
     "has_fire": False,
     "is_warm": False,
 }
@@ -39,9 +39,9 @@ And then we define a set of possible `Actions`:
 ```python
 actions = [
     Action("play_the_piano", 3, {}, {"music_playing": True}),
+    Action("gather_wood", 2, {}, {"wood_count": 1}),
+    Action("build_fire", 1, {"wood_count": 3}, {"has_fire": True}),
     Action("sit_by_fire", 1, {"has_fire": True}, {"is_warm": True}),
-    Action("gather_wood", 2, {}, {"has_wood": True}),
-    Action("build_fire", 1, {"has_wood": True}, {"has_fire": True}),
 ]
 ```
 
@@ -56,7 +56,7 @@ plan, cost = create_plan(goal, actions, initial_state)
 This particular example will return the following plan:
 
 ```
-Plan found: gather_wood -> build_fire -> sit_by_fire | Total Cost: 4
+Plan found: gather_wood -> gather_wood -> gather_wood -> build_fire -> sit_by_fire | Total Cost: 8
 ```
 
 ## Quickstart
