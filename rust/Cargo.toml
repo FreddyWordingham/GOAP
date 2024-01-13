@@ -1,0 +1,14 @@
+[package]
+name = "goap-ai"
+version = "0.0.0"
+description = "Goal-Oriented Action Planning (GOAP) AI library."
+edition = "2021"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+authors = ["Freddy Wordingham <freddy@digilab.co.uk>"]
+documentation = "https://freddywordingham.github.io/goap"
+repository = "https://github.com/FreddyWordingham/goap"
+keywords = ["goap", "ai", "planning", "game-development"]
+categories = ["science", "ai", "game-development"]
+
+[dependencies]
